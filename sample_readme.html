@@ -1,0 +1,86 @@
+<h1 id="ews.ps">EWS.PS</h1>
+<p>PowerShell function using EWS (OAuth2) to perform these operations against Exchange Online Mailboxes.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#functions">Functions</a></li>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#how-to-install-the-module">How To Install The Module</a></li>
+<li><a href="#how-to-uninstall-the-module">How To Uninstall The Module</a></li>
+<li><a href="#oauth-access-token-requirement">OAuth Access Token Requirement</a></li>
+<li><a href="#usage-examples">Usage Examples</a></li>
+</ul>
+<h2 id="functions">Functions</h2>
+<p>So far there are two functions included in this module.</p>
+<ul>
+<li><a href="docs/Get-EwsFolder.md"><code>Get-EwsFolder</code></a>
+<ul>
+<li>List ALL folders from a mailbox</li>
+<li>Search a folder from mailbox by folder display name (eg. <code>Inbox</code>, <code>Drafts</code>)</li>
+<li>Get a folder from mailbox by folder ID (eg. <code>AQMkADRmZTI3MW..</code>)</li>
+</ul></li>
+<li><a href="docs/Move-EwsItem.md"><code>Move-EwsItem</code></a>
+<ul>
+<li>Move all mailbox items from one folder to another</li>
+<li>Move mailbox items between dates from one folder to another</li>
+</ul></li>
+</ul>
+<blockquote>
+<p><em>Note: These functions use OAuth token to authenticate with Exchange Online. Basic authentication using username and password is not supported</em></p>
+</blockquote>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>A registered Azure AD app
+<ul>
+<li><p><strong>API Name:</strong> <em>Exchange</em></p></li>
+<li><p><strong>API Permission Type:</strong> <em>Application</em></p></li>
+<li><p><strong>API Permission Name:</strong> <em>full_access_as_app</em></p>
+<p><img src="https://raw.githubusercontent.com/junecastillote/EWS.PS/master/docs/images/AzureAdApp-API-Permissions.png" alt="Azure Ad Api Permission" /><br>A registered Azure AD App with full_access_as_app API permisson</p></li>
+</ul></li>
+<li>Windows PowerShell 5.1</li>
+<li><a href="https://www.microsoft.com/en-us/download/details.aspx?id=42951">Exchange Web Services Managed API 2.2</a></li>
+<li>For getting access tokens, you can have either <a href="https://www.powershellgallery.com/packages/MSAL.PS">MSAL.PS</a> or <a href="https://www.powershellgallery.com/packages/ADAL.PS">ADAL.PS</a></li>
+</ul>
+<h2 id="how-to-install-the-module">How To Install The Module</h2>
+<ul>
+<li><p><a href="https://github.com/junecastillote/EWS.PS/archive/master.zip">Download the module</a> and extract the ZIP file on your computer.</p>
+<p><img src="https://raw.githubusercontent.com/junecastillote/EWS.PS/master/docs/images/extract_module.png" alt="Extract the module" /><br>Extract the module files on your computer</p></li>
+<li><p>Open PowerShell as Administrator, change the working directory to the location of the module.</p></li>
+<li><p>Run the script <code>.\install.ps1 -ModulePath 'C:\Program Files\WindowsPowerShell\Modules' -Verbose</code></p>
+<p><img src="https://raw.githubusercontent.com/junecastillote/EWS.PS/master/docs/images/install_module.png" alt="Install the module" /><br>Install the module</p></li>
+</ul>
+<h2 id="how-to-uninstall-the-module">How To Uninstall The Module</h2>
+<ul>
+<li>Open PowerShell as Administrator, change the working directory to the location of the module.</li>
+<li>Run the script <code>.\uninstall.ps1 -Verbose</code> <img src="https://raw.githubusercontent.com/junecastillote/EWS.PS/master/docs/images/uninstall_module.png" alt="Uninstall the module" /><br>Uninstall the module</li>
+</ul>
+<h2 id="oauth-access-token-requirement">OAuth Access Token Requirement</h2>
+<p>Make sure to acquire an access token first. Use the <code>Get-MsalToken</code> cmdlet or <code>Get-AdalToken</code>.</p>
+<h3 id="get-access-token-using-msal.ps">Get Access Token Using MSAL.PS</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co"># Get MSAL Token using CLIENT ID,  CLIENT SECRET, and TENANT ID</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="va">$msalParams</span> = @{</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    ClientId = &#39;CLIENT ID&#39;</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>    ClientSecret = (<span class="fu">ConvertTo-SecureString</span> &#39;CLIENT SECRET&#39; -AsPlainText -Force)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    TenantId = &#39;TENANT ID&#39;</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>    Scopes   = <span class="st">&quot;https://outlook.office.com/.default&quot;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>}</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="va">$token</span> = Get-MsalToken @msalParams</span></code></pre></div>
+<h3 id="get-access-token-using-adal.ps">Get Access Token Using ADAL.PS</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co"># Get MSAL Token using CLIENT ID,  CLIENT SECRET, and TENANT ID</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="va">$msalParams</span> = @{</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>    ClientId = &#39;CLIENT ID&#39;</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>    ClientSecret = (<span class="fu">ConvertTo-SecureString</span> &#39;CLIENT SECRET&#39; -AsPlainText -Force)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>    TenantId = &#39;TENANT ID&#39;</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>    Resource   = <span class="st">&quot;https://outlook.office.com/&quot;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>}</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="va">$token</span> = Get-MsalToken @msalParams</span></code></pre></div>
+<blockquote>
+<p><em>Visit the <a href="https://github.com/AzureAD/MSAL.PS">MSAL.PS GitHub</a> page to learn more about using MSAL.PS module to acquire OAuth access tokens.</em></p>
+</blockquote>
+<h2 id="usage-examples">Usage Examples</h2>
+<ul>
+<li><a href="docs/Get-EwsFolder.md#example-1--list-all-folders-in-a-mailbox">List All Folders In A Mailbox</a></li>
+<li><a href="docs/Get-EwsFolder.md#example-2--find-a-folder-using-folder-name">Find A Folder Using Folder Name</a></li>
+<li><a href="docs/Get-EwsFolder.md#example-3--find-a-folder-using-folder-id">Find A Folder Using Folder ID</a></li>
+<li><a href="docs/Move-EwsItem.md#example-1--move-all-items-from-one-folder-to-another">Move All Items from One Folder to Another</a></li>
+<li><a href="docs/Move-EwsItem.md#example-2--move-items-received-within-specified-dates">Move Items Received Between Specified Dates</a></li>
+</ul>
