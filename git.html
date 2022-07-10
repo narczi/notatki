@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 7.3.4.2 (Linux)"/>
+	<meta name="created" content="2022-07-04T17:03:19.085551462"/>
+	<meta name="changed" content="2022-07-06T17:26:35.898963647"/>
+	<style type="text/css">
+		dd { margin-left: 1in; margin-right: 1in }
+	</style>
+</head>
+<body lang="pl-PL" dir="ltr"><p align="center" style="line-height: 100%; margin-top: 0.17in; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="6" style="font-size: 28pt"><b><code>Git</code></b></font></font></p>
+<p align="left" style="line-height: 100%; margin-top: 0.17in; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="6" style="font-size: 28pt"><b><code>Terminologia:</code></b></font></font></p>
+<dl>
+	<dd><br/>
+
+	</dd><dd>
+	<code><font size="3" style="font-size: 12pt"><b>Repository (</b></font></code><code><font size="3" style="font-size: 12pt"><b>krótko:
+	</b></font></code><code><font size="3" style="font-size: 12pt"><b>repo)</b></font></code><code><font size="3" style="font-size: 12pt">
+	– </font></code><code><font size="3" style="font-size: 12pt">miejsce
+	w którym przechowywany jest </font></code><code><font size="3" style="font-size: 12pt">kod
+	projektu. Inaczej zbiór wszystkich plików projektu.</font></code></dd><dd>
+	<code><font size="3" style="font-size: 12pt"><b>Remote repository
+	(krótko: remote) – </b></font></code><code><font size="3" style="font-size: 12pt"><span style="font-weight: normal">kopia
+	naszego lokalnego repozytorium, które znajduje się na jakimś
+	serwerze.</span></font></code></dd><dd>
+	<code><font size="3" style="font-size: 12pt"><b>Commit, </b></font></code><code><font size="3" style="font-size: 12pt"><b>to
+	commit</b></font></code><code><font size="3" style="font-size: 12pt"><b>
+	</b></font></code><code><font size="3" style="font-size: 12pt"><b>(czasownik)</b></font></code><code><font size="3" style="font-size: 12pt">
+	– </font></code><code><font size="3" style="font-size: 12pt">zapisać
+	</font></code><code><font size="3" style="font-size: 12pt">w
+	repozytorium </font></code><code><font size="3" style="font-size: 12pt">zmiany
+	dokonane w jakimś pliku.</font></code></dd><dd>
+	<code><font size="3" style="font-size: 12pt"><b>Commit (rzeczownik)</b></font></code><code><font size="3" style="font-size: 12pt">
+	– </font></code><code><font size="3" style="font-size: 12pt">zmiana
+	</font></code><code><font size="3" style="font-size: 12pt">wprowadzona
+	w repozytorium kodu. </font></code><code><font size="3" style="font-size: 12pt">Commit
+	może być rozumiany jako </font></code><code><font size="3" style="font-size: 12pt">migawka
+	</font></code><code><font size="3" style="font-size: 12pt">stanu
+	całego projektu. </font></code><code><font size="3" style="font-size: 12pt">Z
+	takich właśnie migawek składa się proces powstawania
+	</font></code><code><font size="3" style="font-size: 12pt">oprogramowania
+	w repozytorium git. </font></code><code><font size="3" style="font-size: 12pt">Magia
+	gita polega na tym, że możemy cofnąć się do dowolnej migawki z
+	przeszłości i przywrócić </font></code><code><font size="3" style="font-size: 12pt">wcześniejszą
+	wersję naszego projektu.</font></code></dd><dd>
+	<code><font size="3" style="font-size: 12pt"><b>Commit hash</b></font></code><code><font size="3" style="font-size: 12pt">
+	– unikalny identyfikator dla danego commita.</font></code></dd><dd>
+	<code><font size="3" style="font-size: 12pt"><b>Branch </b></font></code><code><font size="3" style="font-size: 12pt"><b>(gałąź)</b></font></code><code><font size="3" style="font-size: 12pt">
+	–</font></code><code><font size="3" style="font-size: 12pt"> </font></code><code><font size="3" style="font-size: 12pt">jest
+	to odrębna kopia całego projektu na której możemy dokonywać
+	zmian nie martwiąc się przy tym, że zepsujemy coś na głównej
+	gałęzi (pniu)</font></code><code><font size="3" style="font-size: 12pt">.
+	</font></code><code><font size="3" style="font-size: 12pt">Projekt
+	może mieć dowolną ilość odgałęzień, ale </font></code><code><font size="3" style="font-size: 12pt">główny
+	</font></code><code><font size="3" style="font-size: 12pt">kod
+	zwykle</font></code><code><font size="3" style="font-size: 12pt">
+	znajduje się na gałęzi main. </font></code><code><font size="3" style="font-size: 12pt">Gałęzie
+	tworzy się gdy chcemy </font></code><code><font size="3" style="font-size: 12pt">poeksperymentować
+	bez naruszania głównej gałęzi. Osobne gałęzie można tworzyć
+	także </font></code><code><font size="3" style="font-size: 12pt">dla
+	</font></code><code><font size="3" style="font-size: 12pt">pojedynczych
+	</font></code><code><font size="3" style="font-size: 12pt">funkcjonalności
+	projektu i scalać je z główną gałęzią dopiero, gdy będą w
+	pełni gotowe. </font></code>
+	</dd><dd>
+	<code><font size="3" style="font-size: 12pt"><b>Push</b></font></code><code><font size="3" style="font-size: 12pt">
+	– wysyłanie (pchanie) zmienionych plików do repozytorium.</font></code></dd><dd>
+	<code><font size="3" style="font-size: 12pt">Pull - </font></code>
+	</dd><dd>
+	<br/>
+
+	</dd><dd>
+	<code><font size="3" style="font-size: 12pt"><b>Pull request</b></font></code><code><font size="3" style="font-size: 12pt">
+	– </font></code><code><font size="3" style="font-size: 12pt">prośba
+	o scalenie naszego kodu z główną gałęzią, taka prośba może
+	brzmieć np. tak: </font></code><code><font size="3" style="font-size: 12pt">„</font></code><code><font size="3" style="font-size: 12pt">will
+	you </font></code><code><font size="3" style="font-size: 12pt"><b>please</b></font></code><code><font size="3" style="font-size: 12pt"><span style="font-weight: normal">
+	take my changes and </span></font></code><code><font size="3" style="font-size: 12pt"><b>pull</b></font></code><code><font size="3" style="font-size: 12pt"><span style="font-weight: normal">
+	them into master?” Jest to prośba o wciągnięcie (pull) naszych
+	zmian do głównego brancha, inaczej zmergowanie. W gicie wysyłanie
+	zwykło określać się mianem „pchania” (push), a odbieranie
+	„wciąganiem” (pull). Nie możemy na siłę wypchnąć naszych
+	zmian do innego brancha, możemy jedynie poprosić o wciągnięcie
+	ich przez kogoś kto zarządza docelowym branchem.</span></font></code></dd><dd>
+	<code><font size="3" style="font-size: 12pt"><b>Merge</b></font></code><code><font size="3" style="font-size: 12pt">
+	– </font></code><code><font size="3" style="font-size: 12pt">scalenie
+	wielu gałęzi w jedną. </font></code>
+	</dd><dd>
+	<code><font size="3" style="font-size: 12pt"><b>Fork, to fork
+	(czasownik)</b></font></code><code><font size="3" style="font-size: 12pt">
+	– utworzyć kopię czyjegoś repozytorium w celu pracy na nim.
+	Dzięki forkowaniu nie potrzebujemy uprawnień do pracy na czyimś
+	repozytorium, możemy pracować na kopii i dopiero gdy nasze zmiany
+	będą gotowe – poprosić o zmergowanie ich.</font></code></dd><dd>
+	<code><font size="3" style="font-size: 12pt"><b>Clone, to clone
+	(czasownik)</b></font></code><code><font size="3" style="font-size: 12pt"><span style="font-weight: normal">
+	– klonowanie to czynność polegająca na skopiowaniu
+	repozytorium, które znajduje się w internecie na nasz lokalny
+	dysk.</span></font></code></dd><dd>
+	<code><font size="3" style="font-size: 12pt">origin – </font></code><code><font size="3" style="font-size: 12pt">domyślna
+	nazwa zdalnego repozytorium.</font></code></dd><dd>
+	<code><font size="3" style="font-size: 12pt"><b>Staging area</b></font></code><code><font size="3" style="font-size: 12pt">
+	– miejsce do tymczasowego przechowywania plików, zanim zostaną
+	dodane do commita (zostaną zacommitowane).</font></code></dd><dd>
+	<br/>
+
+	</dd></dl>
+<p align="left" style="line-height: 100%; margin-top: 0.17in; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="6" style="font-size: 28pt"><b><code>Komendy:</code></b></font></font></p>
+<p style="line-height: 100%; margin-top: 0.17in; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="4" style="font-size: 14pt"><code><font size="4" style="font-size: 14pt"><b>Konfiguracja:</b></font></code></font></font></p>
+<p style="line-height: 100%; margin-top: 0.17in; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="4" style="font-size: 14pt"><code><font size="4" style="font-size: 14pt">Wyświetl
+zapisaną konfigurację</font></code><code><font size="4" style="font-size: 14pt">:</font></code></font></font></p>
+<dl>
+	<dd><code><font size="3" style="font-size: 12pt">git </font></code><code><font size="3" style="font-size: 12pt">config
+	--list</font></code></dd></dl>
+<p style="line-height: 100%; margin-top: 0.17in; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="4" style="font-size: 14pt"><code><font size="4" style="font-size: 14pt">Skonfiguruj
+lokalnie:</font></code></font></font></p>
+<dl>
+	<dd><code><font size="3" style="font-size: 12pt">git </font></code><code><font size="3" style="font-size: 12pt">config
+	user.email „<a href="mailto:mail@example.com">mail@example.com</a>”</font></code></dd><dd>
+	<code><font size="3" style="font-size: 12pt">git config user.name
+	„johndoe”</font></code></dd></dl>
+<p style="line-height: 100%; margin-top: 0.17in; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="4" style="font-size: 14pt"><code><font size="4" style="font-size: 14pt">Skonfiguruj
+globalnie</font></code><code><font size="4" style="font-size: 14pt">:</font></code></font></font></p>
+<dl>
+	<dd><code><font size="3" style="font-size: 12pt">git </font></code><code><font size="3" style="font-size: 12pt">config
+	--global user.email „<a href="mailto:mail@example.com">mail@example.com</a>”</font></code></dd><dd>
+	<code><font size="3" style="font-size: 12pt">git config --global
+	user.name „johndoe”</font></code></dd><dd>
+	<br/>
+
+	</dd></dl>
+<p style="line-height: 100%; margin-top: 0.17in; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="4" style="font-size: 14pt"><code><font size="4" style="font-size: 14pt">Wyświetl
+</font></code><code><font size="4" style="font-size: 14pt">status
+repozytorium:</font></code></font></font></p>
+<dl>
+	<dd style="text-align: left"><code><font size="3" style="font-size: 12pt">git
+	</font></code><code><font size="3" style="font-size: 12pt">status</font></code></dd></dl>
+<p style="line-height: 100%; margin-top: 0.17in; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="4" style="font-size: 14pt"><code><font size="4" style="font-size: 14pt">Wyświetl
+</font></code><code><font size="4" style="font-size: 14pt">nazwę
+zdalnego repozytorium (najczęściej będzie to origin):</font></code></font></font></p>
+<dl>
+	<dd style="text-align: left"><code><font size="3" style="font-size: 12pt">git
+	remote</font></code></dd></dl>
+<p style="line-height: 100%; margin-top: 0.17in; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="4" style="font-size: 14pt"><code><font size="4" style="font-size: 14pt">Wyświetl
+</font></code><code><font size="4" style="font-size: 14pt">adres
+zdalnego repo</font></code><code><font size="4" style="font-size: 14pt">zytorium</font></code><code><font size="4" style="font-size: 14pt">:</font></code></font></font></p>
+<dl>
+	<dd><code><font size="3" style="font-size: 12pt">git remote -v</font></code></dd><dd>
+	<br/>
+
+	</dd></dl>
+<p style="line-height: 100%; margin-top: 0.17in; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="4" style="font-size: 14pt"><code>Zmiana
+remote repo:</code></font></font></p>
+<dl>
+	<dd><code><font size="3" style="font-size: 12pt">git remote set-url
+	origin <a href="mailto:git@github.com">git@github.com</a>:&lt;Username&gt;/&lt;Project&gt;.git</font></code></dd></dl>
+<p style="line-height: 100%; margin-top: 0.17in; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="4" style="font-size: 14pt"><code><font size="4" style="font-size: 14pt">Dodanie
+remote repo o nazwie „origin”:</font></code></font></font></p>
+<dl>
+	<dd><code><font size="3" style="font-size: 12pt">git remote add
+	origin https://github.com/narczi/django-dance.git</font></code></dd></dl>
+<p style="line-height: 100%; margin-top: 0.17in; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="4" style="font-size: 14pt"><code><font size="4" style="font-size: 14pt">Stwórz
+nowe repozytorium git w istniejącym folderze:</font></code></font></font></p>
+<dl>
+	<dd><code><font size="3" style="font-size: 12pt">git init </font></code>
+	</dd><dd>
+	<br/>
+
+	</dd></dl>
+<p style="line-height: 100%; margin-top: 0.17in; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="4" style="font-size: 14pt"><code><b>Branche:</b></code></font></font></p>
+<p style="line-height: 100%; margin-top: 0.17in; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="4" style="font-size: 14pt"><code>Wyświetl
+lokalne gałęzie:</code></font></font></p>
+<dl>
+	<dd><code><font size="3" style="font-size: 12pt">git branch</font></code></dd></dl>
+<p style="line-height: 100%; margin-top: 0.17in; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="4" style="font-size: 14pt"><code>Wyświetl
+lokalne i zdalne gałęzie:</code></font></font></p>
+<dl>
+	<dd><code><font size="3" style="font-size: 12pt">git branch -a </font></code>
+	</dd></dl>
+<p style="line-height: 100%; margin-top: 0.17in; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="4" style="font-size: 14pt"><code>Stwórz
+nową gałąź:</code></font></font></p>
+<dl>
+	<dd><code><font size="3" style="font-size: 12pt">git checkout -b</font></code></dd><dd>
+	<code><font size="3" style="font-size: 12pt">git checkout -b
+	genericViews</font></code></dd></dl>
+<p style="line-height: 100%; margin-top: 0.17in; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="4" style="font-size: 14pt"><code>Przełącz
+się do innej gałęzi</code><code>:</code></font></font></p>
+<dl>
+	<dd><code><font size="3" style="font-size: 12pt">git checkout
+	genericViews</font></code></dd></dl>
+<p style="line-height: 100%; margin-top: 0.17in; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="4" style="font-size: 14pt"><code>Zaktualizuj
+lokalną listę zdalnych branchy:</code></font></font></p>
+<dl>
+	<dd><code><font size="3" style="font-size: 12pt">git remote update
+	origin –prune</font></code></dd><dd style="margin-left: 0in">
+	<br/>
+
+	</dd></dl>
+<p style="line-height: 100%; margin-top: 0.17in; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="4" style="font-size: 14pt"><code><font size="4" style="font-size: 14pt"><b>Praca
+z commitami:</b></font></code></font></font></p>
+<p style="line-height: 100%; margin-top: 0.17in; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="4" style="font-size: 14pt"><code><font size="4" style="font-size: 14pt">Wyświetl
+commity</font></code><code><font size="4" style="font-size: 14pt">:</font></code></font></font></p>
+<dl>
+	<dd><code><font size="3" style="font-size: 12pt">git log</font></code></dd><dd>
+	<code><font size="3" style="font-size: 12pt">git log -2 (wyświetla
+	dwa ostatnie commity)</font></code></dd><dd>
+	<code><font size="3" style="font-size: 12pt">git log -1
+	(analogicznie, wyświetla tylko ostatni commit)</font></code></dd></dl>
+<p style="line-height: 100%; margin-top: 0.17in; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="4" style="font-size: 14pt"><code><font size="4" style="font-size: 14pt">Dodaj
+konkretny plik do commita:</font></code></font></font></p>
+<dl>
+	<dd><code><font size="3" style="font-size: 12pt">git add plik.txt</font></code></dd></dl>
+<p style="line-height: 100%; margin-top: 0.17in; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="4" style="font-size: 14pt"><code><font size="4" style="font-size: 14pt">Dodaj
+wszystkie pliki do commita</font></code></font></font></p>
+<dl>
+	<dd><code><font size="3" style="font-size: 12pt">git add .</font></code></dd></dl>
+<p style="line-height: 100%; margin-top: 0.17in; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="4" style="font-size: 14pt"><code><font size="4" style="font-size: 14pt">Usuń
+konkretny plik z commita:</font></code></font></font></p>
+<dl>
+	<dd><code><font size="3" style="font-size: 12pt">git rm --cached
+	plik.txt</font></code></dd></dl>
+<p style="line-height: 100%; margin-top: 0.17in; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="4" style="font-size: 14pt"><code><font size="4" style="font-size: 14pt">Zacommituj
+(wszystkie) modyfikacje (dodaj do commita) wraz z wiadomością</font></code><code><font size="4" style="font-size: 14pt">:</font></code></font></font></p>
+<dl>
+	<dd><code><font size="3" style="font-size: 12pt">git commit -a -m
+	„Opis commitu”</font></code></dd></dl>
+<pre></pre><p style="line-height: 100%; margin-top: 0.17in; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="4" style="font-size: 14pt"><code><font size="4" style="font-size: 14pt">Wypchnięcie
+(wysłanie) zmian do zdalnego repozytorium</font></code><code><font size="4" style="font-size: 14pt">:</font></code></font></font></p>
+<dl>
+	<dd><code><font size="3" style="font-size: 12pt">git push</font></code></dd><dd>
+	<code><font size="3" style="font-size: 12pt">git push origin main
+	(wypchnij do zdalnego repozytorium o nazwie „origin”, do gałęzi
+	main)</font></code></dd><dd>
+	<br/>
+
+	</dd></dl>
+</body>
+</html>
