@@ -20,9 +20,9 @@
 <ul>
 <li>admin.py -</li>
 <li><a href="#apps.py">apps.py</a> - przechowuje nazwę apki.</li>
-<li>models.py</li>
+<li><a href="#models.py">models.py</a> - w tym miejscu definiujemy model naszej bazy danych.</li>
 <li>tests.py</li>
-<li>views.py</li>
+<li><a href="#views.py">views.py</a> - tu znajdują się tzw. “widoki” naszej apki, czyli jej podstrony</li>
 </ul></li>
 <li><a href="#manage.py">manage.py</a> - plik wykonywalny służący do zarządzania projektem. Można za jego pomocą np. wystartować serwer deweloperski, ustawić bazę danych etc.</li>
 </ul></li>
@@ -30,11 +30,13 @@
 <h2 id="settings.py">settings.py</h2>
 <h2 id="urls.py">urls.py</h2>
 <h2 id="manage.py">manage.py</h2>
-<h2 id="apps.py">apps.py</h2>
-<p>W tym miejscu można ustawić nazwę wybranej apki:</p>
-<pre><code>class ChallengesConfig(AppConfig):
-    name = &#39;challenges&#39;</code></pre>
 <p>Wystartuj serwer deweloperski:</p>
 <p><code>python3 manage.py runserver</code></p>
 <p>Stwórz nowe app (moduł):</p>
 <p><code>python3 manage.py startapp challenges</code></p>
+<h2 id="apps.py">apps.py</h2>
+<p>W tym miejscu można ustawić nazwę wybranej apki:</p>
+<pre><code>class ChallengesConfig(AppConfig):
+    name = &#39;challenges&#39;</code></pre>
+<h2 id="views.py">views.py</h2>
+<h2 id="models.py">models.py</h2>
