@@ -1,14 +1,14 @@
 <h1 id="django">Django</h1>
 <p>Są to moje notatki na temat frameworka <strong>Django</strong>.</p>
 <h2 id="terminologia">Terminologia:</h2>
-<p>app - inaczej moduł, projekt django może składać się wielu takich modułów, z wielu “appek”.</p>
+<p><strong>app</strong> - inaczej moduł, projekt django może składać się wielu takich modułów, z wielu “appek”. Np. dla projektu strony internetowej będziemy mieli różne appki dla różnych funkcjonalności, będziemy mieli jedną apkę do wyświetlania produktów, z kolei inną do obsługi koszyka zakupów etc.</p>
 <p>Tworzenie projektu Django:</p>
 <p><code>django-admin startproject mypage</code></p>
 <h2 id="pliki-projektu-django">Pliki projektu Django:</h2>
 <ul>
 <li><strong>mypage</strong> (główny folder projektu):
 <ul>
-<li><strong>mypage</strong> (podfolder o tej samej nazwie)
+<li><strong>mypage</strong> (podfolder o tej samej nazwie, zawiera ustawienia globalne dla całego projektu)
 <ul>
 <li><a href="#settings.py">settings.py</a> - plik zawierający ustawienia globalne dla danego projektu Django.</li>
 <li><a href="#urls.py">urls.py</a> - plik zawierający adresy podstron naszego projektu.</li>
@@ -16,12 +16,24 @@
 <li><strong>asgi.py</strong> - plik później potrzebny w deploymencie</li>
 <li><strong>wsgi.py</strong> - plik później potrzebny w deploymencie</li>
 </ul></li>
+<li><strong>challenges</strong> (app):
+<ul>
+<li>admin.py -</li>
+<li><a href="#apps.py">apps.py</a> - przechowuje nazwę apki.</li>
+<li>models.py</li>
+<li>tests.py</li>
+<li>views.py</li>
+</ul></li>
 <li><a href="#manage.py">manage.py</a> - plik wykonywalny służący do zarządzania projektem. Można za jego pomocą np. wystartować serwer deweloperski, ustawić bazę danych etc.</li>
 </ul></li>
 </ul>
 <h2 id="settings.py">settings.py</h2>
 <h2 id="urls.py">urls.py</h2>
 <h2 id="manage.py">manage.py</h2>
+<h2 id="apps.py">apps.py</h2>
+<p>W tym miejscu można ustawić nazwę wybranej apki:</p>
+<pre><code>class ChallengesConfig(AppConfig):
+    name = &#39;challenges&#39;</code></pre>
 <p>Wystartuj serwer deweloperski:</p>
 <p><code>python3 manage.py runserver</code></p>
 <p>Stwórz nowe app (moduł):</p>
