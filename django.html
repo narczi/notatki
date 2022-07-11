@@ -1,12 +1,12 @@
 <h1 id="django">Django</h1>
 <p>Są to moje notatki na temat frameworka <strong>Django</strong>.</p>
-<h2 id="terminologia">Terminologia:</h2>
+<h2 id="terminologia">Terminologia</h2>
 <p><strong>app</strong> - inaczej moduł, projekt django może składać się wielu takich modułów, z wielu “appek”. Np. dla projektu strony internetowej będziemy mieli różne appki dla różnych funkcjonalności, będziemy mieli jedną apkę do wyświetlania produktów, z kolei inną do obsługi koszyka zakupów etc.</p>
 <p>Tworzenie projektu Django:</p>
 <p><code>django-admin startproject mypage</code></p>
-<h2 id="pliki-projektu-django">Pliki projektu Django:</h2>
+<h2 id="pliki-projektu-django">Pliki projektu Django</h2>
 <ul>
-<li><strong>mypage</strong> (główny folder projektu):
+<li><p><strong>mypage</strong> (główny folder projektu):</p>
 <ul>
 <li><strong>mypage</strong> (podfolder o tej samej nazwie, zawiera ustawienia globalne dla całego projektu)
 <ul>
@@ -21,14 +21,17 @@
 <li>admin.py -</li>
 <li><a href="#apps.py">apps.py</a> - przechowuje nazwę apki.</li>
 <li><a href="#models.py">models.py</a> - w tym miejscu definiujemy model naszej bazy danych.</li>
-<li>tests.py</li>
+<li><a href="#tests.py">tests.py</a></li>
 <li><a href="#views.py">views.py</a> - tu znajdują się tzw. “widoki” naszej apki, czyli jej podstrony</li>
-</ul></li>
 <li><a href="#manage.py">manage.py</a> - plik wykonywalny służący do zarządzania projektem. Można za jego pomocą np. wystartować serwer deweloperski, ustawić bazę danych etc.</li>
+</ul></li>
 </ul></li>
 </ul>
 <h2 id="settings.py">settings.py</h2>
 <h2 id="urls.py">urls.py</h2>
+<p>W tym pliku znajdują się adresy URL. Adresy URL są przyporządkowywane widokom. W ten sposób otrzymujemy działającą podstronę która wyświetla się po wpisaniu w przeglądarce konkretnego adresu URL.</p>
+<h2 id="views.py">views.py</h2>
+<p>W tym pliku znajdują się widoki. Widok to nic innego jak funkcja która wykonuje się w odpowiedzi na zapytanie o konkretny adres URL. Zawartość tej funkcji decyduje o tym co zobaczy użytkownik.</p>
 <h2 id="manage.py">manage.py</h2>
 <p>Wystartuj serwer deweloperski:</p>
 <p><code>python3 manage.py runserver</code></p>
@@ -37,6 +40,5 @@
 <h2 id="apps.py">apps.py</h2>
 <p>W tym miejscu można ustawić nazwę wybranej apki:</p>
 <pre><code>class ChallengesConfig(AppConfig):
-    name = &#39;challenges&#39;</code></pre>
-<h2 id="views.py">views.py</h2>
+  name = &#39;challenges&#39;</code></pre>
 <h2 id="models.py">models.py</h2>
